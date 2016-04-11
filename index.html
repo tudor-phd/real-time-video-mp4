@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div id="header">
+<h1>RealTime Video</h1>
+</div>
+
+<div id="nav">
+RealTime Video
+</div>
+
+<div id="section">
+<h2>RealTime Video</h2>
+<div>
+    <div>
+        <label for="filePicker">Choose or drag a file:</label><br>
+        <input type="file" id="filePicker">
+    </div>
+    
+<video id="video" width="400" controls></video>
+<br>
+</div>
+</div>
+
+<div id="footer">
+Copyright Tudor D. Pop
+</div>
+
+<script type="text/javascript">
+var handleFileSelect = function(evt) {
+    var files = evt.target.files;
+    var file = files[0];
+
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload = function(readerEvt) {
+            var binaryString = readerEvt.target.result;
+
+            ///////////////////////////////////////
+            var video = document.getElementById('video');
+            var source = document.createElement('source');
+
+            source.setAttribute('src', 'data:image/png;base64,'+btoa(binaryString));
+
+            video.appendChild(source);
+            video.play();
+            ///////////////////////////////////////
+
+
+
+        };
+
+        reader.readAsBinaryString(file);
+    }
+};
+
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+    document.getElementById('filePicker').addEventListener('change', handleFileSelect, false);
+} else {
+    alert('The File APIs are not fully supported in this browser.');
+}
+</script>
+
+</body>
+</html>
