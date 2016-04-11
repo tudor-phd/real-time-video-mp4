@@ -45,7 +45,7 @@ var handleFileSelect = function(evt) {
             var video = document.getElementById('video');
             var source = document.createElement('source');
 
-            source.setAttribute('src', 'data:image/png;base64,'+btoa(binaryString));
+            source.setAttribute('src', 'data:video/mp4;base64,'+btoa(binaryString));
 
             video.appendChild(source);
             video.play();
